@@ -98,12 +98,27 @@ resource "aws_nat_gateway" "main2" {
 
 }
 
-resource "aws_eip" "nat1" {
+#resource "aws_eip" "nat1" {
   
-  vpc = true
+ # vpc = true
+#}
+
+#resource "aws_eip" "nat2" { #esta manera quedo deprecated ...
+  
+ # vpc = true
+#}
+
+############################################################
+# Solucionar como hacer con el EIP por medio de una intancia    HACER EL EIP PARA SEGUIR EL PROCESO.
+############################################################  
+
+
+resource "aws_eip" "nat1" {
+  instance = aws_instance.app_server.id
+  domain   = "vpc"
 }
 
 resource "aws_eip" "nat2" {
-  
-  vpc = true
+  instance = aws_instance.app_server.id
+  domain   = "vpc"
 }
